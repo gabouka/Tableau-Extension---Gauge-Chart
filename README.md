@@ -1,4 +1,3 @@
-# Tableau Data Extension Tutorial Part One
+# Tableau Data Extension Tutorial Part 1
 
-
-for testing only - my first extension using vscode and nodejs
+Doughnut chart with hardcoded data
