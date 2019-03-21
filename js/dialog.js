@@ -39,15 +39,21 @@
         worksheet.getSummaryDataAsync({ maxRows: 1 }).then(function (sumdata) {
             var worksheetColumns = sumdata.columns;
             $("#selectCategory").text("");
-            $("#selectValue").text("");
+            $("#selectTotal").text("");
+            $("#selectBudget").text("");
+            $("#selectCurrent").text("");
             var counter = 1;
             worksheetColumns.forEach(function (current_value) {
                 $("#selectCategory").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
-                $("#selectValue").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
+                $("#selectTotal").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
+                $("#selectBudget").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
+                $("#selectCurrent").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
                 counter++;
             });
             $("#selectCategory").val(tableau.extensions.settings.get("categoryColumnNumber"));
-            $("#selectValue").val(tableau.extensions.settings.get("valueColumnNumber"));
+            $("#selectTotal").val(tableau.extensions.settings.get("valueColumnNumber"));
+            $("#selectBudget").val(tableau.extensions.settings.get("valueColumnNumber"));
+            $("#selectCurrent").val(tableau.extensions.settings.get("valueColumnNumber"));
         });
     }
  
@@ -63,8 +69,9 @@
  
         tableau.extensions.settings.set("worksheet", $("#selectWorksheet").val());
         tableau.extensions.settings.set("categoryColumnNumber", $("#selectCategory").val());
-        tableau.extensions.settings.set("valueColumnNumber", $("#selectValue").val());
- 
+        tableau.extensions.settings.set("valueColumnNumber", $("#selectTotal").val());
+        tableau.extensions.settings.set("valueColumnNumber", $("#selectBudget").val());
+        tableau.extensions.settings.set("valueColumnNumber", $("#selectCurrent").val());
         tableau.extensions.settings.saveAsync().then((currentSettings) => {
             tableau.extensions.ui.closeDialog("10");
         });

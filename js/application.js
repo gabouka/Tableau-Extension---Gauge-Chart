@@ -33,11 +33,6 @@
       if (unregisterFilterEventListener != null) {
          unregisterFilterEventListener();
       }
- 
-      // If settings are changed we will unregister and re register the listener.
-      if (unregisterMarkSelectionEventListener != null) {
-         unregisterMarkSelectionEventListener();
-      }
   
       // Get worksheet
       worksheet = tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) {
@@ -49,10 +44,6 @@
          drawChartJS();
       });
  
-      unregisterMarkSelectionEventListener = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, (filterEvent) => {
-         drawChartJS();
-      });
-
       unregisterMarkSelectionEventListener = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, (filterEvent) => {
         drawChartJS();
      });
@@ -68,18 +59,35 @@
             labels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
             data.push(worksheetData[i][valueColumnNumber-1].value);
          }
- 
-         var ctx = $("#myChart");
-         myChart = new Chart(ctx, { 
-            type: 'doughnut', 
-            data: { 
-               labels: labels, 
-               datasets: [{ 
-                  backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                  data: data
-               }]
-            }
-         });
+         
+      //Gauge min js 
+
+      var opts = {
+        angle: 0.15, // The span of the gauge arc
+        lineWidth: 0.44, // The line thickness
+        radiusScale: 1, // Relative radius
+        pointer: {
+          length: 0.6, // // Relative to gauge radius
+          strokeWidth: 0.035, // The thickness
+          color: '#000000' // Fill color
+        },
+        limitMax: false,     // If false, max value increases automatically if value > maxValue
+        limitMin: false,     // If true, the min value of the gauge will be fixed
+        colorStart: '#6FADCF',   // Colors
+        colorStop: '#8FC0DA',    // just experiment with them
+        strokeColor: '#E0E0E0',  // to see which ones work best for you
+        generateGradient: true,
+        highDpiSupport: true,     // High resolution support
+        
+      };
+      var target = document.getElementById('myChart'); // your canvas element
+      var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+      gauge.maxValue = 3000; // set max gauge value
+      gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+      gauge.animationSpeed = 32; // set animation speed (32 is default value)
+      gauge.set(1250); // set actual value
+
+
       });
    }
  
