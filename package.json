@@ -9,7 +9,6 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
-    "devextreme": "18.2",
     "jquery": "^3.3.1"
   }
 }
