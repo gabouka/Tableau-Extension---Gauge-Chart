@@ -59,11 +59,17 @@
             labels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
             data.push(worksheetData[i][valueColumnNumber-1].value);
          }
-         
+       
+      //  
+      var totalValue=data[0];
+      var budgetValue=data[1];
+      var needleValue=data[2];
+
+
       //Gauge min js 
 
       var opts = {
-        angle: 0.15, // The span of the gauge arc
+        angle: 0, // The span of the gauge arc
         lineWidth: 0.44, // The line thickness
         radiusScale: 1, // Relative radius
         pointer: {
@@ -76,20 +82,45 @@
         colorStart: '#6FADCF',   // Colors
         colorStop: '#8FC0DA',    // just experiment with them
         strokeColor: '#E0E0E0',  // to see which ones work best for you
+        //percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]], //fill color gradient
+        // staticLabels: {
+        //   font: "10px sans-serif",  // Specifies font
+        //   labels: [0, budgetValue, totalValue],  // Print labels at these values
+        //   color: "#000000",  // Optional: Label text color
+        //   fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+        // },
+        staticZones: [
+          {strokeStyle: "#F03E3E", min: 0, max: budgetValue}, // Red from 100 to 130
+          {strokeStyle: "#FFDD00", min: budgetValue, max: needleValue}, // Yellow
+          {strokeStyle: "#30B32D", min: needleValue, max: totalValue} // Green
+       ],
+      //  renderTicks: {
+      //   divisions: 5,
+      //   divWidth: 1.1,
+      //   divLength: 0.7,
+      //   divColor: "#333333",
+      //   subDivisions: 3,
+      //   subLength: 0.5,
+      //   subWidth: 0.6,
+      //   subColor: "#666666"
+      // },
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
         
       };
       var target = document.getElementById('myChart'); // your canvas element
       var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-      gauge.maxValue = 3000; // set max gauge value
+      gauge.maxValue = totalValue; // set max gauge value
       gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
       gauge.animationSpeed = 32; // set animation speed (32 is default value)
-      gauge.set(1250); // set actual value
+      gauge.set(needleValue); // set actual value
 
-
+      //Show Current Value
+      $(needleLine).html("<span>"+ needleValue + "</span>");
       });
    }
+
+   
  
    function configure() {
       const popupUrl=`${window.location.origin}/dialog.html`;
