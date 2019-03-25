@@ -8,6 +8,8 @@
    let worksheetName = null;
    let categoryColumnNumber = null;
    let valueColumnNumber = null;
+
+   let titleNameValue="Click Configure";
    let selectColor1Value = null;
    let selectColor2Value = null;
    let selectColor3Value = null;
@@ -32,6 +34,7 @@
       categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
       valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 
+      titleNameValue = tableau.extensions.settings.get("titleNameValue");
       selectColor1Value =  tableau.extensions.settings.get("selectColor1Value");
       selectColor2Value =  tableau.extensions.settings.get("selectColor2Value");
       selectColor3Value =  tableau.extensions.settings.get("selectColor3Value");
@@ -123,8 +126,11 @@
       gauge.set(needleValue); // set actual value
 
       //Show Current Value
-      $(needleLine).html("<span>"+ totalColorValue + "</span>");
+      $("#needleLine").html("<span>"+ needleValue + "</span>");
       });
+
+      //Set Title
+      $("#title").text(titleNameValue);
    }
 
    
