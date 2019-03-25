@@ -13,6 +13,7 @@
         dashboard.worksheets.forEach(function (worksheet) {
             $("#selectWorksheet").append("<option value='" + worksheet.name + "'>" + worksheet.name + "</option>");
         });
+
         var worksheetName = tableau.extensions.settings.get("worksheet");
         if (worksheetName != undefined) {
             $("#selectWorksheet").val(worksheetName);
@@ -25,6 +26,9 @@
         $('#cancel').click(closeDialog);
         $('#save').click(saveButton);
         $('.select').select2();
+
+       
+        
     }
  
     function columnsUpdate() {
@@ -42,6 +46,8 @@
             $("#selectTotal").text("");
             $("#selectBudget").text("");
             $("#selectCurrent").text("");
+
+            
             var counter = 1;
             worksheetColumns.forEach(function (current_value) {
                 $("#selectCategory").append("<option value='" + counter + "'>"+current_value.fieldName+"</option>");
@@ -54,8 +60,28 @@
             $("#selectTotal").val(tableau.extensions.settings.get("valueColumnNumber"));
             $("#selectBudget").val(tableau.extensions.settings.get("valueColumnNumber"));
             $("#selectCurrent").val(tableau.extensions.settings.get("valueColumnNumber"));
+
+            $("#selectColor1Container").val(tableau.extensions.settings.get("selectColor1Value"));
+            $("#selectColor2Container").val(tableau.extensions.settings.get("selectColor2Value"));
+            $("#selectColor3Container").val(tableau.extensions.settings.get("selectColor3Value"));
+           
         });
     }
+
+    
+    //Color Picker
+            //  var popupColor = new Picker({
+            //     parent: document.querySelector('#selectColor1'),
+            //     popup: 'bottom', // 'right'(default), 'left', 'top', 'bottom'
+            //     alpha: false, // default: true
+            //     color: '#898989',
+            //     editor: true,
+            //     editorFormat: 'hex',
+            //     onDone: function(color){
+            //        $("selectColor1Container").html("<span id='selectColor1Value'>" + color.hex + "</span>" );
+            //     }
+    
+            // });
  
     function reloadSettings() {
          
@@ -72,6 +98,12 @@
         tableau.extensions.settings.set("valueColumnNumber", $("#selectTotal").val());
         tableau.extensions.settings.set("valueColumnNumber", $("#selectBudget").val());
         tableau.extensions.settings.set("valueColumnNumber", $("#selectCurrent").val());
+        
+// Set Colors
+        tableau.extensions.settings.set("selectColor1Value", $("#selectColor1Container").val());
+        tableau.extensions.settings.set("selectColor2Value", $("#selectColor2Container").val());
+        tableau.extensions.settings.set("selectColor3Value", $("#selectColor3Container").val());
+
         tableau.extensions.settings.saveAsync().then((currentSettings) => {
             tableau.extensions.ui.closeDialog("10");
         });

@@ -8,6 +8,9 @@
    let worksheetName = null;
    let categoryColumnNumber = null;
    let valueColumnNumber = null;
+   let selectColor1Value = null;
+   let selectColor2Value = null;
+   let selectColor3Value = null;
   
    $(document).ready(function () {
       tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
@@ -28,6 +31,10 @@
       worksheetName = tableau.extensions.settings.get("worksheet");
       categoryColumnNumber = tableau.extensions.settings.get("categoryColumnNumber");
       valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
+
+      selectColor1Value =  tableau.extensions.settings.get("selectColor1Value");
+      selectColor2Value =  tableau.extensions.settings.get("selectColor2Value");
+      selectColor3Value =  tableau.extensions.settings.get("selectColor3Value");
   
       // If settings are changed we will unregister and re register the listener.
       if (unregisterFilterEventListener != null) {
@@ -90,9 +97,9 @@
         //   fractionDigits: 0  // Optional: Numerical precision. 0=round off.
         // },
         staticZones: [
-          {strokeStyle: "#F03E3E", min: 0, max: budgetValue}, // Red from 100 to 130
-          {strokeStyle: "#FFDD00", min: budgetValue, max: needleValue}, // Yellow
-          {strokeStyle: "#30B32D", min: needleValue, max: totalValue} // Green
+          {strokeStyle: selectColor1Value, min: 0, max: budgetValue}, // Red from 100 to 130
+          {strokeStyle: selectColor2Value, min: budgetValue, max: needleValue}, // Yellow
+          {strokeStyle: selectColor3Value, min: needleValue, max: totalValue} // Green
        ],
       //  renderTicks: {
       //   divisions: 5,
@@ -116,7 +123,7 @@
       gauge.set(needleValue); // set actual value
 
       //Show Current Value
-      $(needleLine).html("<span>"+ needleValue + "</span>");
+      $(needleLine).html("<span>"+ totalColorValue + "</span>");
       });
    }
 
