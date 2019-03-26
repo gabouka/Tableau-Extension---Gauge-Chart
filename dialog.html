@@ -37,7 +37,7 @@
                 <select id="selectTotal" class="select">
                     <option disabled selected="selected">-- None Selected --</option>
                 </select> 
-                <div id="selectColor1"> Select Color : <input type="text" id="selectColor1Container" value="#898989"></div>
+                <div id="selectColor1"> Select Total Color : <input type="color" id="selectColor1Container" value="#898989"></div>
             </div>
         </div>
         <div class="row">
@@ -46,7 +46,7 @@
                 <select id="selectBudget" class="select">
                     <option disabled selected="selected">-- None Selected --</option>
                 </select>
-                <div id="selectColor2"> Select Color : <input type="text" id="selectColor2Container" value="#dcf442"></div>
+                <div id="selectColor2"> Select Budget Color : <input type="color" id="selectColor2Container" value="#dcf442"></div>
             </div>
         </div>
         <div class="row">
@@ -55,7 +55,7 @@
                 <select id="selectCurrent" class="select">
                     <option disabled selected="selected">-- None Selected --</option>
                 </select>
-                <div id="selectColor3"> Select Color : <input type="text" id="selectColor3Container" value="#53f441"></div>
+                <div id="selectColor3"> Select Needle Color : <input type="color" id="selectColor3Container" value="#53f441"></div>
             </div>
         </div>
         <div class="row dialog-buttons">
@@ -68,6 +68,7 @@
 <script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/tableau-extensions-1.1.0.min.js"></script>
-<script type="text/javascript" src="libs/vanilla-picker/dist/vanilla-picker.js"></script>
+<!-- for IE color picker support -->
+<script type="text/javascript" src="js/color-polyfill.js"></script> 
 <script type="text/javascript" src="js/dialog.js"></script>
 </html>

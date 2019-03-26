@@ -70,10 +70,14 @@
             data.push(worksheetData[i][valueColumnNumber-1].value);
          }
        
-      //  
+      //  Creating varialbles for 
       var totalValue=data[0];
       var budgetValue=data[1];
       var needleValue=data[2];
+
+      var formattedtotalValue= numeral(totalValue).format('0,0a').toUpperCase();
+      var formattedbudgetValue= numeral(budgetValue).format('0,0a').toUpperCase();
+      var formattedNeedleValue= numeral(needleValue).format('0,0a').toUpperCase();
 
 
       //Gauge min js 
@@ -85,7 +89,7 @@
         pointer: {
           length: 0.6, // // Relative to gauge radius
           strokeWidth: 0.035, // The thickness
-          color: '#000000' // Fill color
+          color: selectColor3Value // Fill color
         },
         limitMax: false,     // If false, max value increases automatically if value > maxValue
         limitMin: false,     // If true, the min value of the gauge will be fixed
@@ -93,27 +97,26 @@
         colorStop: '#8FC0DA',    // just experiment with them
         strokeColor: '#E0E0E0',  // to see which ones work best for you
         //percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]], //fill color gradient
-        // staticLabels: {
-        //   font: "10px sans-serif",  // Specifies font
-        //   labels: [0, budgetValue, totalValue],  // Print labels at these values
-        //   color: "#000000",  // Optional: Label text color
-        //   fractionDigits: 0  // Optional: Numerical precision. 0=round off.
-        // },
+      //   staticLabels: {
+      //     font: "10px sans-serif",  // Specifies font
+      //     labels: [0, 100, 200],  // Print labels at these values
+      //     color: "#000000",  // Optional: Label text color
+      //     fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+      //   },
         staticZones: [
-          {strokeStyle: selectColor1Value, min: 0, max: budgetValue}, // Red from 100 to 130
-          {strokeStyle: selectColor2Value, min: budgetValue, max: needleValue}, // Yellow
-          {strokeStyle: selectColor3Value, min: needleValue, max: totalValue} // Green
+          {strokeStyle: selectColor1Value, min: 0, max: budgetValue}, 
+          {strokeStyle: selectColor2Value, min: budgetValue, max: totalValue}, 
        ],
-      //  renderTicks: {
-      //   divisions: 5,
-      //   divWidth: 1.1,
-      //   divLength: 0.7,
-      //   divColor: "#333333",
-      //   subDivisions: 3,
-      //   subLength: 0.5,
-      //   subWidth: 0.6,
-      //   subColor: "#666666"
-      // },
+       renderTicks: {
+        divisions: 5,
+        divWidth: 1.1,
+        divLength: 0.2,
+        divColor: "#333333",
+        subDivisions: 3,
+        subLength: 0.1,
+        subWidth: 0.3,
+        subColor: "#666666"
+      },
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
         
@@ -126,9 +129,12 @@
       gauge.set(needleValue); // set actual value
 
       //Show Current Value
-      $("#needleLine").html("<span>"+ needleValue + "</span>");
+     
+      
+      
+      $("#needleLine").html("<span>"+ formattedNeedleValue + "</span>");
       });
-
+      document.getElementById("needleLine").style.color= selectColor3Value;
       //Set Title
       $("#title").text(titleNameValue);
    }
