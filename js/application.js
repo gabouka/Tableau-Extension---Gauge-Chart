@@ -74,11 +74,12 @@
       var totalValue=data[0];
       var budgetValue=data[1];
       var needleValue=data[2];
+      var remainingValue=totalValue-budgetValue
 
       var formattedtotalValue= numeral(totalValue).format('0,0a').toUpperCase();
       var formattedbudgetValue= numeral(budgetValue).format('0,0a').toUpperCase();
       var formattedNeedleValue= numeral(needleValue).format('0,0a').toUpperCase();
-
+      var formattedremainingValue=numeral(remainingValue).format('0,0a').toUpperCase();
 
       //Gauge min js 
 
@@ -127,16 +128,22 @@
       gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
       gauge.animationSpeed = 32; // set animation speed (32 is default value)
       gauge.set(needleValue); // set actual value
-
-      //Show Current Value
+      target.title = gauge.value; //show tooltip
+      
      
-      
-      
+      //Set Legend
+      $("#legend").html("<span>"+labels[1]+ "<span class='square1'>"+formattedbudgetValue +"</span><span>"+labels[0]+"<span class='square2'>"+ formattedremainingValue +"</span>");
+
+
+      $(".square1").css('backgroundColor', selectColor1Value);
+      $(".square2").css('backgroundColor', selectColor2Value);
+      //Show Current Value
       $("#needleLine").html("<span>"+ formattedNeedleValue + "</span>");
       });
-      document.getElementById("needleLine").style.color= selectColor3Value;
+      $("#needleLine").css("color",selectColor3Value) ;
       //Set Title
       $("#title").text(titleNameValue);
+      
    }
 
    

@@ -1,5 +1,5 @@
 body {
-    padding: 20px;
+    padding: 0px;
  }
 
  .container {
@@ -12,7 +12,7 @@ body {
  
 .page-header {
     background-color: #28bbef;
-    padding: 10px;
+    padding:   10px;
 }
  
 .btn {
@@ -20,7 +20,7 @@ body {
 }
  
 .dialog-buttons {
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .box{
