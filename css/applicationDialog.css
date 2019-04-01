@@ -12,7 +12,8 @@ body {
  
 .page-header {
     background-color: #28bbef;
-    padding:   10px;
+    padding:   5px;
+    color: white;
 }
  
 .btn {
@@ -30,4 +31,24 @@ body {
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, .2);
     
+}
+
+.btn:focus, .btn:active{
+   outline: none !important;
+   box-shadow: none;
+}
+
+.btn-primary{
+    background-color: #28bbef;
+    border-color: aliceblue;
+}
+
+.btn-danger{
+    background-color: #898989;
+    border-color: black;
+}
+
+.btn-success{
+    background-color: #3ec871;
+    border-color: #008000;
 }

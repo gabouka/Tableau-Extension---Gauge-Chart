@@ -62,7 +62,7 @@
             $("#selectCurrent").val(tableau.extensions.settings.get("valueColumnNumber"));
 
             $("#titleName").val(tableau.extensions.settings.get("titleNameValue"));
-
+            $("#prefix").val(tableau.extensions.settings.get("prefixValue"));
             $("#selectColor1Container").val(tableau.extensions.settings.get("selectColor1Value"));
             $("#selectColor2Container").val(tableau.extensions.settings.get("selectColor2Value"));
             $("#selectColor3Container").val(tableau.extensions.settings.get("selectColor3Value"));
@@ -103,6 +103,7 @@
         
 
         tableau.extensions.settings.set("titleNameValue", $("#titleName").val());
+        tableau.extensions.settings.set("prefixValue", $("#prefix").val());
         // Set Colors
         tableau.extensions.settings.set("selectColor1Value", $("#selectColor1Container").val());
         tableau.extensions.settings.set("selectColor2Value", $("#selectColor2Container").val());

@@ -13,6 +13,7 @@
    let selectColor1Value = null;
    let selectColor2Value = null;
    let selectColor3Value = null;
+   let prefixValue = null;
   
    $(document).ready(function () {
       tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
@@ -35,6 +36,7 @@
       valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 
       titleNameValue = tableau.extensions.settings.get("titleNameValue");
+      prefixValue = tableau.extensions.settings.get("prefixValue");
       selectColor1Value =  tableau.extensions.settings.get("selectColor1Value");
       selectColor2Value =  tableau.extensions.settings.get("selectColor2Value");
       selectColor3Value =  tableau.extensions.settings.get("selectColor3Value");
@@ -64,6 +66,8 @@
          var labels = [];
          var data = [];
          var worksheetData = sumdata.data;
+
+       
     
          for (var i=0; i<worksheetData.length; i++) {
             labels.push(worksheetData[i][categoryColumnNumber-1].formattedValue);
@@ -71,15 +75,16 @@
          }
        
       //  Creating varialbles for 
+     
       var totalValue=data[0];
       var budgetValue=data[1];
       var needleValue=data[2];
       var remainingValue=totalValue-budgetValue
 
-      var formattedtotalValue= numeral(totalValue).format('0,0a').toUpperCase();
-      var formattedbudgetValue= numeral(budgetValue).format('0,0a').toUpperCase();
-      var formattedNeedleValue= numeral(needleValue).format('0,0a').toUpperCase();
-      var formattedremainingValue=numeral(remainingValue).format('0,0a').toUpperCase();
+      var formattedtotalValue= numeral(totalValue).format('0,0.0a').toUpperCase();
+      var formattedbudgetValue= numeral(budgetValue).format('0,0.0a').toUpperCase();
+      var formattedNeedleValue= numeral(needleValue).format('0,0.0a').toUpperCase();
+      var formattedremainingValue=numeral(remainingValue).format('0,0.0a').toUpperCase();
 
       //Gauge min js 
 
@@ -116,7 +121,7 @@
         subDivisions: 3,
         subLength: 0.1,
         subWidth: 0.3,
-        subColor: "#666666"
+        subColor: "#333333"
       },
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
@@ -132,18 +137,17 @@
       
      
       //Set Legend
-      $("#legend").html("<span>"+labels[1]+ "<span class='square1'>"+formattedbudgetValue +"</span><span>"+labels[0]+"<span class='square2'>"+ formattedremainingValue +"</span>");
+      $("#legend").html("<span>"+labels[1]+ "<span class='square1'>"+prefixValue+ formattedbudgetValue +"</span><span>"+labels[0]+"<span class='square2'>"+ prefixValue+ formattedremainingValue +"</span>");
 
 
       $(".square1").css('backgroundColor', selectColor1Value);
       $(".square2").css('backgroundColor', selectColor2Value);
       //Show Current Value
-      $("#needleLine").html("<span>"+ formattedNeedleValue + "</span>");
+      $("#needleLine").html("<span>"+ prefixValue + formattedNeedleValue + "</span>");
       });
       $("#needleLine").css("color",selectColor3Value) ;
       //Set Title
       $("#title").text(titleNameValue);
-      
    }
 
    
