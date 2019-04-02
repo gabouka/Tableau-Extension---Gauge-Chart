@@ -52,3 +52,11 @@ body {
     background-color: #3ec871;
     border-color: #008000;
 }
+
+.smallField{
+    width: 70px;
+}
+
+.smallField option{
+    width: 70px;
+}

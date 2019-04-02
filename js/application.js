@@ -14,6 +14,8 @@
    let selectColor2Value = null;
    let selectColor3Value = null;
    let prefixValue = null;
+   let titleShow=null;
+   let legendShow=null;
   
    $(document).ready(function () {
       tableau.extensions.initializeAsync({ 'configure':configure }).then(function () {
@@ -36,6 +38,8 @@
       valueColumnNumber = tableau.extensions.settings.get("valueColumnNumber");
 
       titleNameValue = tableau.extensions.settings.get("titleNameValue");
+      titleShow = tableau.extensions.settings.get("titleShow");
+      legendShow = tableau.extensions.settings.get("legendShow");
       prefixValue = tableau.extensions.settings.get("prefixValue");
       selectColor1Value =  tableau.extensions.settings.get("selectColor1Value");
       selectColor2Value =  tableau.extensions.settings.get("selectColor2Value");
@@ -137,17 +141,28 @@
       
      
       //Set Legend
-      $("#legend").html("<span>"+labels[1]+ "<span class='square1'>"+prefixValue+ formattedbudgetValue +"</span><span>"+labels[0]+"<span class='square2'>"+ prefixValue+ formattedremainingValue +"</span>");
+      if (legendShow=="show"){
+         $("#legend").html("<table class='leftAlign'><tr><td class='square1'></td><td>"+labels[1]+"</td><td class='boldFont'>"+ prefixValue + formattedbudgetValue +" </td></tr><tr><td class='square2'></td><td>"+ labels[0]+ "</td><td class='boldFont'>" + prefixValue + formattedremainingValue + "</td></tr></table>");
+         $(".square1").css('backgroundColor', selectColor1Value);
+         $(".square2").css('backgroundColor', selectColor2Value);
+         $(".showHideLegend").css("display", "inline-block");
+      } else {
+         $(".showHideLegend").css("display", "none");
+      };
 
+       //Set Title
+      if (titleShow=="show"){
+         $("#title").text(titleNameValue);
+         $(".showHideTitle").css("display", "inline-block");
+      } else {
+         $(".showHideTitle").css("display", "none");
+      };
 
-      $(".square1").css('backgroundColor', selectColor1Value);
-      $(".square2").css('backgroundColor', selectColor2Value);
       //Show Current Value
       $("#needleLine").html("<span>"+ prefixValue + formattedNeedleValue + "</span>");
       });
       $("#needleLine").css("color",selectColor3Value) ;
-      //Set Title
-      $("#title").text(titleNameValue);
+     
    }
 
    
@@ -156,7 +171,7 @@
       const popupUrl=`${window.location.origin}/dialog.html`;
       let defaultPayload="";
      
-      tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:400, width:500 }).then((closePayload) => {
+      tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
          drawChartJS();
       }).catch((error) => {
          switch (error.errorCode) {

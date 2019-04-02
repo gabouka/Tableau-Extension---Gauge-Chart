@@ -63,6 +63,9 @@
 
             $("#titleName").val(tableau.extensions.settings.get("titleNameValue"));
             $("#prefix").val(tableau.extensions.settings.get("prefixValue"));
+            $("#titleShow").val(tableau.extensions.settings.get("titleShow"));
+            $("#legendShow").val(tableau.extensions.settings.get("legendShow"));
+
             $("#selectColor1Container").val(tableau.extensions.settings.get("selectColor1Value"));
             $("#selectColor2Container").val(tableau.extensions.settings.get("selectColor2Value"));
             $("#selectColor3Container").val(tableau.extensions.settings.get("selectColor3Value"));
@@ -104,6 +107,10 @@
 
         tableau.extensions.settings.set("titleNameValue", $("#titleName").val());
         tableau.extensions.settings.set("prefixValue", $("#prefix").val());
+        tableau.extensions.settings.set("titleShow", $("#titleShow").val());
+        tableau.extensions.settings.set("legendShow", $("#legendShow").val());
+
+
         // Set Colors
         tableau.extensions.settings.set("selectColor1Value", $("#selectColor1Container").val());
         tableau.extensions.settings.set("selectColor2Value", $("#selectColor2Container").val());
