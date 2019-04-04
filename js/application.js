@@ -168,7 +168,8 @@
    
  
    function configure() {
-      const popupUrl=`${window.location.origin}/dialog.html`;
+      const popupUrl='https://gabouka.github.io/Tableau-Extension---Gauge-Chart/dialog.html'
+      //`${window.location.origin}/dialog.html`;
       let defaultPayload="";
      
       tableau.extensions.ui.displayDialogAsync(popupUrl, defaultPayload, { height:500, width:500 }).then((closePayload) => {
