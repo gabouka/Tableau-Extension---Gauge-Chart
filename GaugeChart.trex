@@ -7,7 +7,8 @@
     <author name="Gabor Kubler" email="kubler.gabor@gmail.com" organization="Viacom" website="https://www.viacom.com"/>
     <min-api-version>0.9</min-api-version>
     <source-location>
-      <url>http://localhost:8080</url>
+      <!-- <url>http://localhost:8080</url> -->
+      <url>https://gabouka.github.io/Tableau-Extension---Gauge-Chart/</url>
     </source-location>
     <icon></icon>
     <permissions>

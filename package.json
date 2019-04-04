@@ -1,5 +1,5 @@
 {
-  "name": "GaugeChart",
+  "name": "gaugechart",
   "version": "0.5.0",
   "description": "TableuExtGauge",
   "main": "index.js",
