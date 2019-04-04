@@ -10,4 +10,7 @@ Reload the visual after saving it!
 Known bugs:
 - Needs to reload the visual after setup
 - order of measures is important
+- no dropdown in the configuration should be empty otherwise it is not going to save the selection
+
+Available for testing in any Tableau Desktop version that supports extensions. 
 
